@@ -411,12 +411,16 @@ export default function App() {
             That's kind of a big deal. 🤍
           </p>
           
-            href="#song"
+          <button
+            onClick={() => document.getElementById('song').scrollIntoView({ behavior: 'smooth' })}
             className="glass px-10 py-4 rounded-full text-white text-lg font-medium 
-                       hover:bg-rose-500/20 transition-all duration-300 animate-pulse-glow inline-block"
+                       hover:bg-rose-500/20 transition-all duration-300 animate-pulse-glow 
+                       inline-block cursor-pointer border-0 bg-transparent"
           >
             Keep scrolling ↓
-          </a>
+          </button>
+          {/* Scroll hint */}
+          <div className="mt-16 animate-scroll-hint text-white/20 text-2xl">⌄</div>
           {/* Scroll hint */}
           <div className="mt-16 animate-scroll-hint text-white/20 text-2xl">⌄</div>
         </div>
