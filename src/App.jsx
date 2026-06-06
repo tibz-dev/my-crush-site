@@ -177,11 +177,6 @@ function SongDedication() {
             </div>
           </div>
         )}
-
-        {/* Manual song input hint */}
-        <p className="text-white/20 text-xs mt-5 text-center">
-          Set <code className="text-rose-400/50">VITE_SPOTIFY_EMBED_URL</code> in .env for a real Spotify player
-        </p>
       </div>
     </Section>
   )
@@ -233,9 +228,7 @@ function PhotoGallery() {
           ))}
         </div>
 
-        <p className="text-white/20 text-xs text-center mt-4">
-          Add your own photos via <code className="text-rose-400/50">VITE_PHOTO_1</code>, <code className="text-rose-400/50">VITE_PHOTO_2</code>… in .env
-        </p>
+  
       </div>
 
       {/* Lightbox */}
