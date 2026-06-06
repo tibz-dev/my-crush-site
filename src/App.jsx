@@ -361,26 +361,30 @@ export default function App() {
   const [emailSent, setEmailSent] = useState(false)
   const [emailErr, setEmailErr]   = useState(false)
 
-  const handleYes = async () => {
-    setPhase('yes')
-    if (!EMAILJS_SERVICE || !EMAILJS_TEMPLATE || !EMAILJS_KEY) return
-    try {
-      await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-        to_name:  CRUSH_NAME,
-        to_email: CRUSH_EMAIL,
-        message:  `Hey ${CRUSH_NAME} 🌹 Someone special is asking you out! They think you're wonderful.`,
-      }, EMAILJS_KEY)
-      await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-        to_name:  'Me',
-        to_email: MY_EMAIL,
-        message:  `🎉 ${CRUSH_NAME} said YES!`,
-      }, EMAILJS_KEY)
-      setEmailSent(true)
-    } catch (e) {
-      console.error(e)
-      setEmailErr(true)
-    }
+ const handleYes = async () => {
+  setPhase('yes')
+  if (!EMAILJS_SERVICE || !EMAILJS_TEMPLATE || !EMAILJS_KEY) return
+  try {
+    // Email to your crush
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      name:    `Someone who adores ${CRUSH_NAME}`,
+      email:   MY_EMAIL,
+      message: `Hey ${CRUSH_NAME} 🌹 Someone very special made you a whole website. They think you're absolutely wonderful — and they'd love to take you on a date. 💌`,
+    }, EMAILJS_KEY)
+
+    // Email to yourself (confirmation)
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      name:    CRUSH_NAME,
+      email:   CRUSH_EMAIL,
+      message: `🎉 ${CRUSH_NAME} said YES! Time to plan the perfect date. 🌹`,
+    }, EMAILJS_KEY)
+
+    setEmailSent(true)
+  } catch (e) {
+    console.error(e)
+    setEmailErr(true)
   }
+}
 
   if (phase === 'yes') {
     return (
